@@ -4,7 +4,7 @@
 3. Creature class - include health
 
 */
-
+//https://processing.org/examples/arrayobjects.html
 Animal[] PREYS;
 Animal[] PREDATORS;
 
@@ -62,7 +62,8 @@ void init_pp(){
   
   PREYS = new Animal[prey_count];
   PREDATORS = new Animal[predator_count];
-  
+  println("Preys:", prey_count);
+  println("Predators:", predator_count);
 }
 
 
