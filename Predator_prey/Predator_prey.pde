@@ -8,7 +8,7 @@
 Animal[] PREYS;
 Animal[] PREDATORS;
 
-float prob_prey = 15.0, prob_predator = 5.0; //initial probabilities
+float prob_prey = 2.0, prob_predator = 2.0; //initial probabilities
 color color_prey = color(0, 200, 0), color_predator = color(200, 0, 0), color_ground = color(0);
 int state_ground = 0, state_prey = 1, state_predator = 2;
 int prey_count = 0, predator_count = 0;
@@ -18,7 +18,7 @@ int cellSize = 10;
 int settings_width = 0, cells_x = 0, cells_y = 0;
 
 // Variables for timer
-int interval = 100;
+int interval = 1000;
 int lastRecordedTime = 0;
 
 // Array of cells
@@ -32,8 +32,6 @@ boolean pause = false;
 // === functions ===
 void init_pp(int x_cells, int y_cells){
 // Initialization of cells
-  //for (int x=0; x<(width-settings_width)/cellSize; x++) {
-  //  for (int y=0; y<height/cellSize; y++) {
   for (int x=0; x<x_cells; x++) {
     for (int y=0; y<y_cells; y++) {
       float state = random (0, 100);
@@ -58,15 +56,19 @@ void init_pp(int x_cells, int y_cells){
   println("Preys:", prey_count," | Predators:", predator_count);
   
   //init all animals
-  for (int n=0; n<PREYS.length; n++){
-    //PREYS[n] = new Animal(state_prey);
-  }
-  for (int n=0; n<PREDATORS.length; n++){
-    //PREDATORS[n] = new Animal(state_predator);
+  int prey_n = 0, predator_n = 0;
+  for (int x=0; x<x_cells; x++) {
+    for (int y=0; y<y_cells; y++) {
+      if(cells[x][y]==state_prey){
+        PREYS[prey_n++] = new Animal(state_prey, x, y, x_cells, y_cells);
+      }
+      else if(cells[x][y]==state_predator){
+        PREDATORS[predator_n++] = new Animal(state_predator, x, y, x_cells, y_cells);
+      }
+    }
   }
   
-  //need x, y positions of prey and predator
-  
+  PREYS[0].test();
 }
 
 
@@ -74,13 +76,10 @@ void init_pp(int x_cells, int y_cells){
 void setup() {
   size(1000, 700);
   settings_width = width - height;
-  println("set width", settings_width);
   cells_x = (width-settings_width)/cellSize;
   cells_y = height/cellSize;
   
-  // Instantiate arrays 
-  //cells = new int[width-settings_width/cellSize][height/cellSize];
-  //cellsBuffer = new int[width-settings_width/cellSize][height/cellSize];
+  // Instantiate arrays
   cells = new int[cells_x][cells_y];
   cellsBuffer = new int[cells_x][cells_y];
   // This stroke will draw the background grid
@@ -97,8 +96,6 @@ void setup() {
 void draw() {
 
   //Draw grid
-  //for (int x=0; x<(width-settings_width)/cellSize; x++) {
-  //  for (int y=0; y<height/cellSize; y++) {
   for (int x=0; x<cells_x; x++) {
     for (int y=0; y<cells_y; y++) {    
       if (cells[x][y]==state_prey) {
@@ -113,13 +110,18 @@ void draw() {
       rect (x*cellSize, y*cellSize, cellSize, cellSize);
     }
   }
-  // Iterate if timer ticks
-  //if (millis()-lastRecordedTime>interval) {
-  //  if (!pause) {
-  //    iteration();
-  //    lastRecordedTime = millis();
-  //  }
-  //}
+   //Iterate if timer ticks
+  if (millis()-lastRecordedTime>interval) {
+    if (!pause) {
+      //iteration();
+      int[] next_pos = PREYS[0].move();
+      cells[next_pos[0]][next_pos[1]] = state_ground;
+      cells[next_pos[2]][next_pos[3]] = state_prey;
+      
+      
+      lastRecordedTime = millis();
+    }
+  }
 
 
 }

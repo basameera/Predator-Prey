@@ -17,18 +17,25 @@ class Animal {
   }
   
   int[] move(){
+    int[] output = new int[4];
+    output[0] = pos_x;
+    output[1] = pos_y;
     next_x = pos_x + 1;
-    next_y = pos_x;
+    next_y = pos_y;
     
     if (next_x>window_W)  next_x = window_W;
     if (next_y>window_H)  next_y = window_H;
     
     pos_x = next_x;
     pos_y = next_y;
-    int[] output = new int[2];
-    output[0] = pos_x;
-    output[1] = pos_y;
+    
+    output[2] = pos_x;
+    output[3] = pos_y;
     
     return output;
+  }
+  
+  void test(){
+    println("test"); 
   }
 } 
