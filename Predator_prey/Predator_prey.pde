@@ -18,7 +18,7 @@ int cellSize = 10;
 int settings_width = 0, cells_x = 0, cells_y = 0;
 
 // Variables for timer
-int interval = 1000;
+int interval = 100;
 int lastRecordedTime = 0;
 
 // Array of cells
@@ -57,6 +57,7 @@ void init_pp(int x_cells, int y_cells){
   
   //init all animals
   int prey_n = 0, predator_n = 0;
+  println("x_cells:", x_cells," | y_cells:", y_cells);
   for (int x=0; x<x_cells; x++) {
     for (int y=0; y<y_cells; y++) {
       if(cells[x][y]==state_prey){
@@ -68,7 +69,6 @@ void init_pp(int x_cells, int y_cells){
     }
   }
   
-  PREYS[0].test();
 }
 
 
@@ -114,10 +114,21 @@ void draw() {
   if (millis()-lastRecordedTime>interval) {
     if (!pause) {
       //iteration();
-      int[] next_pos = PREYS[0].move();
-      cells[next_pos[0]][next_pos[1]] = state_ground;
-      cells[next_pos[2]][next_pos[3]] = state_prey;
+      for(int n=0; n<PREYS.length; n++){
+        int[] next_pos = PREYS[n].moveLeft();
+        //println("+");
+        //println(next_pos);
+        cells[next_pos[0]][next_pos[1]] = state_ground;
+        cells[next_pos[2]][next_pos[3]] = state_prey;
+      }
       
+      for(int n=0; n<PREDATORS.length; n++){
+        int[] next_pos = PREDATORS[n].moveDown();
+        //println("+");
+        //println(next_pos);
+        cells[next_pos[0]][next_pos[1]] = state_ground;
+        cells[next_pos[2]][next_pos[3]] = state_predator;
+      }
       
       lastRecordedTime = millis();
     }

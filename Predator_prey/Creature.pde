@@ -16,15 +16,42 @@ class Animal {
     window_W = w;
   }
   
-  int[] move(){
+  int[] moveLeft(){
     int[] output = new int[4];
     output[0] = pos_x;
     output[1] = pos_y;
-    next_x = pos_x + 1;
-    next_y = pos_y;
+    //next_x = pos_x + 1;
+    //next_y = pos_y;
     
-    if (next_x>window_W)  next_x = window_W;
-    if (next_y>window_H)  next_y = window_H;
+    if (pos_x<(window_W-1)){
+      next_x = pos_x + 1;
+    }
+    if (pos_y<(window_H-1)){
+      next_y = pos_y;
+    }
+    
+    pos_x = next_x;
+    pos_y = next_y;
+    
+    output[2] = pos_x;
+    output[3] = pos_y;
+    
+    return output;
+  }
+  
+  int[] moveDown(){
+    int[] output = new int[4];
+    output[0] = pos_x;
+    output[1] = pos_y;
+    //next_x = pos_x + 1;
+    //next_y = pos_y;
+    
+    if (pos_x<(window_W-1)){
+      next_x = pos_x;
+    }
+    if (pos_y<(window_H-1)){
+      next_y = pos_y + 1;
+    }
     
     pos_x = next_x;
     pos_y = next_y;
