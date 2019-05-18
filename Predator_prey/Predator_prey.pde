@@ -4,6 +4,8 @@
 3. Creature class - include health
 
 */
+import controlP5.*;
+ControlP5 cp5;
 
 Animal[] PREYS;
 Animal[] PREDATORS;
@@ -27,7 +29,7 @@ int[][] cells;
 int[][] cellsBuffer; 
 
 // Pause
-boolean pause = false;
+boolean pause = true;
 
 // === functions ===
 void init_pp(int x_cells, int y_cells){
@@ -53,11 +55,9 @@ void init_pp(int x_cells, int y_cells){
   
   PREYS = new Animal[prey_count];
   PREDATORS = new Animal[predator_count];
-  println("Preys:", prey_count," | Predators:", predator_count);
   
   //init all animals
   int prey_n = 0, predator_n = 0;
-  println("x_cells:", x_cells," | y_cells:", y_cells);
   for (int x=0; x<x_cells; x++) {
     for (int y=0; y<y_cells; y++) {
       if(cells[x][y]==state_prey){
@@ -70,8 +70,6 @@ void init_pp(int x_cells, int y_cells){
   }
   
 }
-
-
 
 void setup() {
   size(1000, 700);
@@ -87,15 +85,16 @@ void setup() {
 
   noSmooth();
 
+  settingsSetup();
+
+
   //init_gameoflife();
   init_pp(cells_x, cells_y);
   background(0); // Fill in black in case cells don't cover all the windows
+  drawGrid();
 }
 
-
-void draw() {
-
-  //Draw grid
+void drawGrid(){
   for (int x=0; x<cells_x; x++) {
     for (int y=0; y<cells_y; y++) {    
       if (cells[x][y]==state_prey) {
@@ -110,22 +109,25 @@ void draw() {
       rect (x*cellSize, y*cellSize, cellSize, cellSize);
     }
   }
+}
+
+void draw() {
+
+  //Draw grid
+  drawGrid();
+  
    //Iterate if timer ticks
   if (millis()-lastRecordedTime>interval) {
     if (!pause) {
       //iteration();
       for(int n=0; n<PREYS.length; n++){
         int[] next_pos = PREYS[n].moveLeft();
-        //println("+");
-        //println(next_pos);
         cells[next_pos[0]][next_pos[1]] = state_ground;
         cells[next_pos[2]][next_pos[3]] = state_prey;
       }
       
       for(int n=0; n<PREDATORS.length; n++){
         int[] next_pos = PREDATORS[n].moveDown();
-        //println("+");
-        //println(next_pos);
         cells[next_pos[0]][next_pos[1]] = state_ground;
         cells[next_pos[2]][next_pos[3]] = state_predator;
       }

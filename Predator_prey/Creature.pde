@@ -20,8 +20,6 @@ class Animal {
     int[] output = new int[4];
     output[0] = pos_x;
     output[1] = pos_y;
-    //next_x = pos_x + 1;
-    //next_y = pos_y;
     
     if (pos_x<(window_W-1)){
       next_x = pos_x + 1;
@@ -43,8 +41,6 @@ class Animal {
     int[] output = new int[4];
     output[0] = pos_x;
     output[1] = pos_y;
-    //next_x = pos_x + 1;
-    //next_y = pos_y;
     
     if (pos_x<(window_W-1)){
       next_x = pos_x;
@@ -60,9 +56,5 @@ class Animal {
     output[3] = pos_y;
     
     return output;
-  }
-  
-  void test(){
-    println("test"); 
   }
 } 
