@@ -5,13 +5,16 @@
 
 */
 
-Animal h1 = new Animal(20);
+Animal[] PREYS;
+Animal[] PREDATORS;
 
 float prob_prey = 15.0, prob_predator = 10.0; //initial probabilities
 color color_prey = color(0, 200, 0), color_predator = color(200, 0, 0), color_ground = color(0);
 int state_ground = 0, state_prey = 1, state_predator = 2;
 
 int settings_width = 300;
+int prey_count = 0, predator_count = 0;
+
 
 // Size of cells
 int cellSize = 10;
@@ -44,16 +47,22 @@ void init_pp(){
       int value = 100;
       if (state>=0 && state<prob_prey) { 
         value = state_prey;
+        prey_count++;
       }
       else if (state>=prob_prey && state<(prob_prey+prob_predator)) { 
         value = state_predator;
+        predator_count++;
       }
       else {
         value = state_ground;
       }
       cells[x][y] = int(value); // Save state of each cell
     }
-  } 
+  }
+  
+  PREYS = new Animal[prey_count];
+  PREDATORS = new Animal[predator_count];
+  
 }
 
 
@@ -144,47 +153,3 @@ void iteration() { // When the clock ticks
     } // End of y loop
   } // End of x loop
 } // End of function
-
-void keyPressed() {
-  if (key=='r' || key == 'R') {
-    // Restart: reinitialization of cells
-    for (int x=0; x<width/cellSize; x++) {
-      for (int y=0; y<height/cellSize; y++) {
-        float state = random (100);
-        if (state > probabilityOfAliveAtStart) {
-          state = 0;
-        }
-        else {
-          state = 1;
-        }
-        cells[x][y] = int(state); // Save state of each cell
-      }
-    }
-  }
-  if (key==' ') { // On/off of pause
-    pause = !pause;
-  }
-  if (key=='c' || key == 'C') { // Clear all
-    for (int x=0; x<width/cellSize; x++) {
-      for (int y=0; y<height/cellSize; y++) {
-        cells[x][y] = 0; // Save all to zero
-      }
-    }
-  }
-}
-
-void init_gameoflife(){
-// Initialization of cells
-  for (int x=0; x<width/cellSize; x++) {
-    for (int y=0; y<height/cellSize; y++) {
-      float state = random (100);
-      if (state > probabilityOfAliveAtStart) { 
-        state = 0;
-      }
-      else {
-        state = 1;
-      }
-      cells[x][y] = int(state); // Save state of each cell
-    }
-  } 
-}
