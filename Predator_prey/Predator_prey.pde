@@ -4,31 +4,22 @@
 3. Creature class - include health
 
 */
-//https://processing.org/examples/arrayobjects.html
+
 Animal[] PREYS;
 Animal[] PREDATORS;
 
-float prob_prey = 15.0, prob_predator = 10.0; //initial probabilities
+float prob_prey = 15.0, prob_predator = 5.0; //initial probabilities
 color color_prey = color(0, 200, 0), color_predator = color(200, 0, 0), color_ground = color(0);
 int state_ground = 0, state_prey = 1, state_predator = 2;
-
-int settings_width = 300;
 int prey_count = 0, predator_count = 0;
-
 
 // Size of cells
 int cellSize = 10;
-
-// How likely for a cell to be alive at start (in percentage)
-float probabilityOfAliveAtStart = 15;
+int settings_width = 0, cells_x = 0, cells_y = 0;
 
 // Variables for timer
 int interval = 100;
 int lastRecordedTime = 0;
-
-// Colors for active/inactive cells
-color alive = color(0, 200, 0);
-color dead = color(0);
 
 // Array of cells
 int[][] cells; 
@@ -39,10 +30,12 @@ int[][] cellsBuffer;
 boolean pause = false;
 
 // === functions ===
-void init_pp(){
+void init_pp(int x_cells, int y_cells){
 // Initialization of cells
-  for (int x=0; x<(width-settings_width)/cellSize; x++) {
-    for (int y=0; y<height/cellSize; y++) {
+  //for (int x=0; x<(width-settings_width)/cellSize; x++) {
+  //  for (int y=0; y<height/cellSize; y++) {
+  for (int x=0; x<x_cells; x++) {
+    for (int y=0; y<y_cells; y++) {
       float state = random (0, 100);
       int value = 100;
       if (state>=0 && state<prob_prey) { 
@@ -62,26 +55,41 @@ void init_pp(){
   
   PREYS = new Animal[prey_count];
   PREDATORS = new Animal[predator_count];
-  println("Preys:", prey_count);
-  println("Predators:", predator_count);
+  println("Preys:", prey_count," | Predators:", predator_count);
+  
+  //init all animals
+  for (int n=0; n<PREYS.length; n++){
+    //PREYS[n] = new Animal(state_prey);
+  }
+  for (int n=0; n<PREDATORS.length; n++){
+    //PREDATORS[n] = new Animal(state_predator);
+  }
+  
+  //need x, y positions of prey and predator
+  
 }
 
 
 
 void setup() {
   size(1000, 700);
+  settings_width = width - height;
+  println("set width", settings_width);
+  cells_x = (width-settings_width)/cellSize;
+  cells_y = height/cellSize;
   
   // Instantiate arrays 
-  cells = new int[width-settings_width/cellSize][height/cellSize];
-  cellsBuffer = new int[width-settings_width/cellSize][height/cellSize];
-
+  //cells = new int[width-settings_width/cellSize][height/cellSize];
+  //cellsBuffer = new int[width-settings_width/cellSize][height/cellSize];
+  cells = new int[cells_x][cells_y];
+  cellsBuffer = new int[cells_x][cells_y];
   // This stroke will draw the background grid
   stroke(48);
 
   noSmooth();
 
   //init_gameoflife();
-  init_pp();
+  init_pp(cells_x, cells_y);
   background(0); // Fill in black in case cells don't cover all the windows
 }
 
@@ -89,8 +97,10 @@ void setup() {
 void draw() {
 
   //Draw grid
-  for (int x=0; x<(width-settings_width)/cellSize; x++) {
-    for (int y=0; y<height/cellSize; y++) {
+  //for (int x=0; x<(width-settings_width)/cellSize; x++) {
+  //  for (int y=0; y<height/cellSize; y++) {
+  for (int x=0; x<cells_x; x++) {
+    for (int y=0; y<cells_y; y++) {    
       if (cells[x][y]==state_prey) {
         fill(color_prey);
       }
