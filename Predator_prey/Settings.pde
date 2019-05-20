@@ -1,35 +1,46 @@
 void settingsSetup(){
-  PFont font = createFont("arial",20);
+  int fontSize = 15;
+  int pos_gap = fontSize*4;
+  int tf_width = 100;
+  int btn_width = 60;
+  PFont font = createFont("arial",fontSize);
   cp5 = new ControlP5(this);
         
   cp5.addTextfield("Initial_Prey")
      .setPosition(720, 20)
-     .setSize(200,40)
-     .setFont(createFont("arial",20))
+     .setSize(tf_width, fontSize*2)
+     .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
 
    cp5.addTextfield("Simulation_Time")
-     .setPosition(720, 100)
-     .setSize(200,40)
-     .setFont(createFont("arial",20))
+     .setPosition(720, 20+pos_gap)
+     .setSize(tf_width, fontSize*2)
+     .setFont(createFont("arial",fontSize))
+     .setAutoClear(false)
+     ;
+     
+   cp5.addTextfield("Simulation_TimeQQ")
+     .setPosition(720, 20+(pos_gap*2))
+     .setSize(tf_width, fontSize*2)
+     .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
        
   cp5.addBang("save")
      .setPosition(720, 640)
-     .setSize(80,40)
+     .setSize(btn_width, fontSize*2)
      .setFont(font)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
      ;
      
   cp5.addBang("run")
-     .setPosition(820, 640)
-     .setSize(80,40)
+     .setPosition(720+(1*(btn_width+10)), 640)
+     .setSize(btn_width, fontSize*2)
      .setFont(font)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
-     ;
-     
+     ;   
+  
   textFont(font);
   cp5.get(Textfield.class, "Initial_Prey").setText("10");
   cp5.get(Textfield.class, "Simulation_Time").setText("10"); 
