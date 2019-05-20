@@ -12,3 +12,5 @@ Predator-prey simulator using Cellular Automata
 
 ## Done;
 1. Generate initial number of Preys (green) and Predators (red) and show them in simulator env. 
+
+![Simulator](https://github.com/basameera/Predator-Prey/blob/master/pp_simulator.PNG)
