@@ -3,6 +3,9 @@
 2. GUI - simulation and control buttons in separate areas
 3. Creature class - include health
 
+4. Invoke python program with Processing
+5. Simulation time
+6. Num. of Preys, Predators at each instance
 */
 import controlP5.*;
 ControlP5 cp5;

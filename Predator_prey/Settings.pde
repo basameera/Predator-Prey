@@ -8,6 +8,13 @@ void settingsSetup(){
      .setFont(createFont("arial",20))
      .setAutoClear(false)
      ;
+
+   cp5.addTextfield("Simulation_Time")
+     .setPosition(720, 100)
+     .setSize(200,40)
+     .setFont(createFont("arial",20))
+     .setAutoClear(false)
+     ;
        
   cp5.addBang("save")
      .setPosition(720, 640)
@@ -24,7 +31,8 @@ void settingsSetup(){
      ;
      
   textFont(font);
-  cp5.get(Textfield.class, "Initial_Prey").setText("10"); 
+  cp5.get(Textfield.class, "Initial_Prey").setText("10");
+  cp5.get(Textfield.class, "Simulation_Time").setText("10"); 
 }
 
 public void save() {
