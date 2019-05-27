@@ -19,8 +19,9 @@ int state_ground = 0, state_prey = 1, state_predator = 2;
 int prey_count = 0, predator_count = 0;
 
 // Size of cells
-int cellSize = 10;
+int cellSize = 100;
 int settings_width = 0, cells_x = 0, cells_y = 0;
+int HEIGHT=0, WIDTH=0;
 
 // Variables for timer
 int interval = 100;
@@ -77,6 +78,8 @@ void init_pp(int x_cells, int y_cells){
 void setup() {
   size(1000, 700);
   settings_width = width - height;
+  HEIGHT = height;
+  WIDTH = height;
   cells_x = (width-settings_width)/cellSize;
   cells_y = height/cellSize;
   
@@ -182,3 +185,13 @@ void iteration() { // When the clock ticks
     } // End of y loop
   } // End of x loop
 } // End of function
+
+void mousePressed() {
+  if(pause && mouseY>=0 && mouseY<=HEIGHT && mouseX>=0 && mouseX<=WIDTH){
+    int cx = mouseX/cellSize;
+    int cy = mouseY/cellSize;
+    println(cy, cx);
+    cp5.get(Textfield.class, "CELL_Y").setText(str(cy));
+    cp5.get(Textfield.class, "CELL_X").setText(str(cx));
+  }
+}

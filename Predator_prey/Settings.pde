@@ -20,8 +20,15 @@ void settingsSetup(){
      .setAutoClear(false)
      ;
      
-   cp5.addTextfield("Simulation_TimeQQ")
+   cp5.addTextfield("CELL_Y")
      .setPosition(720, 20+(pos_gap*2))
+     .setSize(tf_width, fontSize*2)
+     .setFont(createFont("arial",fontSize))
+     .setAutoClear(false)
+     ;
+     
+   cp5.addTextfield("CELL_X")
+     .setPosition(720 + tf_width + 20, 20+(pos_gap*2))
      .setSize(tf_width, fontSize*2)
      .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
@@ -40,7 +47,14 @@ void settingsSetup(){
      .setFont(font)
      .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
      ;   
-  
+     
+  cp5.addBang("plot")
+     .setPosition(720+(2*(btn_width+10)), 640)
+     .setSize(btn_width, fontSize*2)
+     .setFont(font)
+     .getCaptionLabel().align(ControlP5.CENTER, ControlP5.CENTER)
+     ; 
+     
   textFont(font);
   cp5.get(Textfield.class, "Initial_Prey").setText("10");
   cp5.get(Textfield.class, "Simulation_Time").setText("10"); 
@@ -62,4 +76,9 @@ public void run() {
   else{
     println("run");
   }
+}
+
+public void plot() {
+    println("plot");
+
 }
