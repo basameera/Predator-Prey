@@ -19,7 +19,7 @@ int state_ground = 0, state_prey = 1, state_predator = 2;
 int prey_count = 0, predator_count = 0;
 
 // Size of cells
-int cellSize = 100;
+int cellSize = 50;
 int settings_width = 0, cells_x = 0, cells_y = 0;
 int HEIGHT=0, WIDTH=0;
 
@@ -190,8 +190,9 @@ void mousePressed() {
   if(pause && mouseY>=0 && mouseY<=HEIGHT && mouseX>=0 && mouseX<=WIDTH){
     int cx = mouseX/cellSize;
     int cy = mouseY/cellSize;
-    println(cy, cx);
+    println(cy, cx, cells[cx][cy]);
     cp5.get(Textfield.class, "CELL_Y").setText(str(cy));
     cp5.get(Textfield.class, "CELL_X").setText(str(cx));
+
   }
 }

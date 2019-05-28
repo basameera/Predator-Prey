@@ -115,7 +115,7 @@ p.legend(loc='best')
 p.xlabel('time')
 p.ylabel('population')
 p.title('Evolution of fox and rabbit populations')
-# f1.savefig('rabbits_and_foxes_1.png')
+f1.savefig('scipy_integrate_fox_rabit_evolution.png')
 
 
 # 
