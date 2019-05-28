@@ -79,6 +79,6 @@ public void run() {
 }
 
 public void plot() {
-    println("plot");
-
+  println("plot");
+  win = new PWindow(int(cp5.get(Textfield.class, "CELL_X").getText()), int(cp5.get(Textfield.class, "CELL_X").getText()), mainLeftMargin);
 }

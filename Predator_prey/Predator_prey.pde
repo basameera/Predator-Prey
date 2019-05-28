@@ -13,6 +13,8 @@ ControlP5 cp5;
 Animal[] PREYS;
 Animal[] PREDATORS;
 
+PWindow win;
+
 float prob_prey = 2.0, prob_predator = 2.0; //initial probabilities
 color color_prey = color(0, 200, 0), color_predator = color(200, 0, 0), color_ground = color(0);
 int state_ground = 0, state_prey = 1, state_predator = 2;
@@ -22,6 +24,9 @@ int prey_count = 0, predator_count = 0;
 int cellSize = 50;
 int settings_width = 0, cells_x = 0, cells_y = 0;
 int HEIGHT=0, WIDTH=0;
+int mainLeftMargin = 0;
+int plotWindowW = 600;
+int midGap = 20;
 
 // Variables for timer
 int interval = 100;
@@ -75,8 +80,16 @@ void init_pp(int x_cells, int y_cells){
   
 }
 
-void setup() {
+public void settings() {
   size(1000, 700);
+  noSmooth();
+  
+}
+
+void setup() {
+  mainLeftMargin = (displayWidth-width-midGap-plotWindowW)/2;
+  print(mainLeftMargin);
+  surface.setLocation(mainLeftMargin, (displayHeight-height)/2);
   settings_width = width - height;
   HEIGHT = height;
   WIDTH = height;
@@ -89,7 +102,7 @@ void setup() {
   // This stroke will draw the background grid
   stroke(48);
 
-  noSmooth();
+  
 
   settingsSetup();
 
