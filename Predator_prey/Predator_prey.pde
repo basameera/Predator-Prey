@@ -8,6 +8,7 @@
 6. Num. of Preys, Predators at each instance
 */
 import controlP5.*;
+import grafica.*;
 ControlP5 cp5;
 
 Animal[] PREYS;
@@ -25,7 +26,7 @@ int cellSize = 50;
 int settings_width = 0, cells_x = 0, cells_y = 0;
 int HEIGHT=0, WIDTH=0;
 int mainLeftMargin = 0;
-int plotWindowW = 600;
+int plotWindowW = 850;
 int midGap = 20;
 
 // Variables for timer
@@ -88,7 +89,6 @@ public void settings() {
 
 void setup() {
   mainLeftMargin = (displayWidth-width-midGap-plotWindowW)/2;
-  print(mainLeftMargin);
   surface.setLocation(mainLeftMargin, (displayHeight-height)/2);
   settings_width = width - height;
   HEIGHT = height;
@@ -111,6 +111,9 @@ void setup() {
   init_pp(cells_x, cells_y);
   background(0); // Fill in black in case cells don't cover all the windows
   drawGrid();
+  
+  
+  plot();
 }
 
 void drawGrid(){

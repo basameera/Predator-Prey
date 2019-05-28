@@ -5,10 +5,11 @@ Predator-prey simulator using Cellular Automata
 [Download](https://processing.org/download/)
 
 ## To Do;
-1. A simple movement function
-2. Add Cellular Automata to movement function
-3. Implement predator-prey interaction when both meet in the same cell
-4. Add Initial simulation settings 
+1. New Plot window
+1. Add Cellular Automata to movement function
+1. Implement predator-prey interaction when both meet in the same cell
+1. Add Initial simulation settings 
+1. PP equ. in Processing
 
 ## Done;
 1. Generate initial number of Preys (green) and Predators (red) and show them in simulator env. 
