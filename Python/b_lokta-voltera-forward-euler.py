@@ -43,8 +43,8 @@ b = 0.1
 c = 1.5
 d = 0.075
 
-T_start, T_end = 0.0, 30.0
-dt = 0.001
+T_start, T_end = 0.0, 10.0
+dt = 0.01
 
 def dX_dt(X, t=0):
     """ Return the growth rate of fox and rabbit populations. """

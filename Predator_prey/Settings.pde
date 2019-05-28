@@ -87,7 +87,7 @@ GPointsArray genPlotData(){
       points.add(i, 10*noise(0.1*i));
     }
     return points;
-  }
+}
 
 public void plot() {
   //println("plot");

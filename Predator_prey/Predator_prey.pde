@@ -113,7 +113,39 @@ void setup() {
   drawGrid();
   
   
-  plot();
+  //plot();
+  Lokta_Volterra();
+}
+
+// Definition of parameters
+float a = 1.0;
+float b = 0.1;
+float c = 1.5;
+float d = 0.075;
+float T_start = 0.0, T_end = 10.0;
+float dt = 0.01;
+
+float getU(float ut, float vt){
+    return ut + (a*ut - b*ut*vt)*dt;
+}
+float getV(float ut, float vt){
+    return vt + (-c*vt + d*ut*vt)*dt;
+}
+
+void Lokta_Volterra(){
+    int nPoints = int((T_end+dt)/dt);
+    GPointsArray Ut = new GPointsArray(nPoints);
+    GPointsArray Vt = new GPointsArray(nPoints);
+    
+    float U_init = 10.0, V_init = 10.0;
+    Ut.add(0, U_init);
+    Vt.add(0, V_init);
+    
+    for(int i=1; i<nPoints; i++){
+      
+    }
+    
+    
 }
 
 void drawGrid(){
