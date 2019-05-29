@@ -124,7 +124,7 @@ float a = 1.0;
 float b = 0.1;
 float c = 1.5;
 float d = 0.075;
-float T_start = 0.0, T_end = 10.0;
+float T_start = 0.0, T_end = 20.0;
 float dt = 0.01;
 
 float getU(float ut, float vt){
