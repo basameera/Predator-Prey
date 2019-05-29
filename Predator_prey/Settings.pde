@@ -98,3 +98,8 @@ public void plot(GPointsArray data) {
   //println("plot");
   win = new PWindow(int(cp5.get(Textfield.class, "CELL_X").getText()), int(cp5.get(Textfield.class, "CELL_X").getText()), mainLeftMargin, data);
 }
+
+public void plot(HashMap<String, GPointsArray> data) {
+  //println("plot");
+  win = new PWindow(int(cp5.get(Textfield.class, "CELL_X").getText()), int(cp5.get(Textfield.class, "CELL_X").getText()), mainLeftMargin, data);
+}

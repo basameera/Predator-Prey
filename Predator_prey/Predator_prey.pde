@@ -9,6 +9,8 @@
 */
 import controlP5.*;
 import grafica.*;
+import java.util.Map;
+
 ControlP5 cp5;
 
 Animal[] PREYS;
@@ -113,8 +115,8 @@ void setup() {
   drawGrid();
   
   
-  //plot();
-  Lokta_Volterra();
+  plot(Lokta_Volterra());
+  //Lokta_Volterra();
 }
 
 // Definition of parameters
@@ -132,20 +134,28 @@ float getV(float ut, float vt){
     return vt + (-c*vt + d*ut*vt)*dt;
 }
 
-void Lokta_Volterra(){
-    int nPoints = int((T_end+dt)/dt);
-    GPointsArray Ut = new GPointsArray(nPoints);
-    GPointsArray Vt = new GPointsArray(nPoints);
-    
-    float U_init = 10.0, V_init = 10.0;
-    Ut.add(0, U_init);
-    Vt.add(0, V_init);
-    
-    for(int i=1; i<nPoints; i++){
-      
-    }
-    
-    
+HashMap<String, GPointsArray> Lokta_Volterra(){
+  println("Lokta");
+  int nPoints = int((T_end+dt)/dt);
+  GPointsArray Ut = new GPointsArray(nPoints);
+  GPointsArray Vt = new GPointsArray(nPoints);
+  
+  float U_init = 10.0, V_init = 10.0;
+  Ut.add(0, U_init);
+  Vt.add(0, V_init);
+
+  for(int t=1; t<nPoints; t++){
+    Ut.add(t, getU(Ut.getY(t-1), Vt.getY(t-1)));
+    Vt.add(t, getV(Ut.getY(t-1), Vt.getY(t-1)));
+  }
+  
+  HashMap<String, GPointsArray> hm = new HashMap<String, GPointsArray>();
+
+  // Putting key-value pairs in the HashMap
+  hm.put("Ut", Ut);
+  hm.put("Vt", Vt);
+
+  return hm;
 }
 
 void drawGrid(){
