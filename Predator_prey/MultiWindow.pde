@@ -140,8 +140,8 @@ class PWindow extends PApplet {
     //plot.addLayer("Layer1", points);
     //plot.getLayer("Layer1").setLineColor(color(255, 0, 0));
     
-    plot.addLayer("Layer2", hashPoints.get("Vt"));
-    plot.getLayer("Layer2").setLineColor(color(0, 0, 255));
+    plot.addLayer("Fox", hashPoints.get("Vt"));
+    plot.getLayer("Fox").setLineColor(color(0, 0, 255));
     // Draw it!
     //plot.defaultDraw(); 
     
@@ -152,7 +152,7 @@ class PWindow extends PApplet {
     plot.drawTitle();
     plot.drawLines();
     plot.drawGridLines(GPlot.VERTICAL);
-    plot.drawLegend(new String[] {"Layer1", "Layer2"}, 
+    plot.drawLegend(new String[] {"Rabbit", "Fox"}, 
                     new float[] {0.1, 0.5}, 
                     new float[] {0.95, 0.95});
     plot.drawLabels();
