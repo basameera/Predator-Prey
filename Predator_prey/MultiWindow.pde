@@ -40,26 +40,7 @@ class PWindow extends PApplet {
     
   }
   
-  GPointsArray genPlotData(){
-    println("Multi window");
-    int nPoints = 100;
-    GPointsArray points = new GPointsArray(nPoints);
-    
-    for (int i = 0; i < nPoints; i++) {
-      points.add(i, 10*noise(0.1*i));
-    }
-    return points;
-  }
   
-  GPointsArray Lokta_Volterra(){
-    int nPoints = 100;
-    GPointsArray points = new GPointsArray(nPoints);
-    
-    for (int i = 0; i < nPoints; i++) {
-      points.add(i, 10*noise(0.1*i));
-    }
-    return points;
-  }
 
   void draw() {
     //ellipse(random(width), random(height), random(50), random(50));
