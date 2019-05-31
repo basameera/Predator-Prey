@@ -1,4 +1,4 @@
-void settingsSetup(){
+void simSettingsSetup(){
   int fontSize = 15;
   int pos_gap = fontSize*4;
   int tf_width = 100;

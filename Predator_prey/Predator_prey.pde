@@ -106,7 +106,7 @@ void setup() {
 
   
 
-  settingsSetup();
+  simSettingsSetup();
 
 
   //init_gameoflife();
