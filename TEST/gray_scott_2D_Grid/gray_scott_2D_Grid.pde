@@ -17,8 +17,10 @@ void setup() {
   size (900, 900);
   cols = width/cellSize;
   rows = height/cellSize;
+  println(cols, rows);
   grid = new Cell[cols][rows];
   next = new Cell[cols][rows];
+  temp = new Cell[cols][rows];
   
   // Instantiate arrays 
   for (int i = 0; i < cols; i++) {
@@ -26,18 +28,22 @@ void setup() {
       // Initialize each object
       grid[i][j] = new Cell(i*cellSize, j*cellSize, cellSize, cellSize);
       grid[i][j].a = 1.0;
+      
+      //grid[i][j].a = random(1);
+      //grid[i][j].b = 1.0 - grid[i][j].a;
+      
       grid[i][j].update();
       
       next[i][j] = new Cell(i*cellSize, j*cellSize, cellSize, cellSize);
-      next[i][j].a = 1.0;
-      next[i][j].update();
+      temp[i][j] = new Cell(i*cellSize, j*cellSize, cellSize, cellSize);
     }
   }
   
   // pour chemical B to chemical A
   for (int i = int(cols/2)-1; i < int(cols/2)+10; i++) {
     for (int j = int(rows/2)-1; j < int(rows/2)+10; j++) {
-      grid[i][j].b = 1;
+      grid[i][j].b = 1.0;
+      grid[i][j].a = 0.0;
       grid[i][j].update();
     }
   }
