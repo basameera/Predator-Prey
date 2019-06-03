@@ -8,8 +8,7 @@
 
 // Also, for reference
 // http://hg.postspectacular.com/toxiclibs/src/44d9932dbc9f9c69a170643e2d459f449562b750/src.sim/toxi/sim/grayscott/GrayScott.java?at=default
-// working
-
+// 
 Cell[][] grid;
 Cell[][] prev;
 
