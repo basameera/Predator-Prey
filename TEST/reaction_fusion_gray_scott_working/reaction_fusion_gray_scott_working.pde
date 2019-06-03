@@ -44,7 +44,7 @@ void setup() {
   }
 
   //random initialization of 10 spots
-  for (int n = 0; n < 10; n++) {
+  for (int n = 0; n < 1; n++) {
     int startx = int(random(20, width-20));
     int starty = int(random(20, height-20));
 
@@ -105,9 +105,9 @@ void swap() {
 }
 
 void draw() {
-  //println(frameRate);
+  println(frameRate);
 
-  for (int i = 0; i < 1; i++) {
+  for (int i = 0; i < 10; i++) {
     update();
     swap();
   }
@@ -119,8 +119,8 @@ void draw() {
       float a = spot.a;
       float b = spot.b;
       int pos = i + j * width;
-      //pixels[pos] = color((a-b)*255);
-      pixels[pos] = color(a*255, 0, b*255);
+      pixels[pos] = color((a-b)*255);
+      //pixels[pos] = color(a*255, 0, b*255);
       
     }
   }
