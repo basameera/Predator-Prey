@@ -8,20 +8,28 @@
 
 // Also, for reference
 // http://hg.postspectacular.com/toxiclibs/src/44d9932dbc9f9c69a170643e2d459f449562b750/src.sim/toxi/sim/grayscott/GrayScott.java?at=default
-// 
+
 Cell[][] grid;
 Cell[][] prev;
 
 //parameters
 float dA = 1.0;
 float dB = 0.5;
+float dt = 1.0;
+
+//"mitosis" simulation (f=.0367, k=.0649)
+//float feed = 0.0367;
+//float k = 0.0649;
+
+//"coral growth" simulation (f=.0545, k=.062).
 float feed = 0.055;
 float k = 0.062;
-float dt = 1.0;
+
 
 void setup() {
   size(500, 500);
   print(width, height);
+  
   grid = new Cell[width][height];
   prev = new Cell[width][height];
 
@@ -39,7 +47,6 @@ void setup() {
   for (int n = 0; n < 10; n++) {
     int startx = int(random(20, width-20));
     int starty = int(random(20, height-20));
-    println("sx :", startx, " sy :",starty);
 
     for (int i = startx; i < startx+10; i++) {
       for (int j = starty; j < starty+10; j ++) {
@@ -56,11 +63,8 @@ void update() {
   for (int i = 1; i < width-1; i++) {
     for (int j = 1; j < height-1; j ++) {
 
-      Cell spot = prev[i][j];
-      Cell newspot = grid[i][j];
-
-      float a = spot.a;
-      float b = spot.b;
+      float a = prev[i][j].a;
+      float b = prev[i][j].b;
 
       float laplaceA = 0;
       laplaceA += a*-1;
@@ -84,6 +88,7 @@ void update() {
       laplaceB += prev[i-1][j+1].b*0.05;
       laplaceB += prev[i+1][j+1].b*0.05;
 
+      Cell newspot = grid[i][j]; //new values of the pixel
       newspot.a = a + (dA*laplaceA - a*b*b + feed*(1-a))*dt;
       newspot.b = b + (dB*laplaceB + a*b*b - (k+feed)*b)*dt;
 
@@ -114,7 +119,9 @@ void draw() {
       float a = spot.a;
       float b = spot.b;
       int pos = i + j * width;
-      pixels[pos] = color((a-b)*255);
+      //pixels[pos] = color((a-b)*255);
+      pixels[pos] = color(a*255, 0, b*255);
+      
     }
   }
   updatePixels();

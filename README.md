@@ -19,3 +19,4 @@ Predator-prey simulator using Cellular Automata
 
 
 ![Simulator](https://github.com/basameera/Predator-Prey/blob/master/pp_simulator.PNG)
+![reaction-fusion](https://github.com/basameera/Predator-Prey/blob/master/reaction-fusion.PNG)
