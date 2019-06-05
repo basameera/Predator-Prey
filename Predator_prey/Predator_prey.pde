@@ -114,7 +114,7 @@ void setup() {
   background(0); // Fill in black in case cells don't cover all the windows
   drawGrid();
   
-  plotNewWindow(Lokta_Volterra());
+  plotNewWindow(Gillespie());
 }
 
 void drawGrid(){

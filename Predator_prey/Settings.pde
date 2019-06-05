@@ -93,7 +93,7 @@ public void plot() {
   println("def plot");
   //GPointsArray data = genPlotData();
   //win = new PWindow(int(cp5.get(Textfield.class, "CELL_X").getText()), int(cp5.get(Textfield.class, "CELL_X").getText()), mainLeftMargin, data);
-  plotNewWindow(Lokta_Volterra());
+  plotNewWindow(Gillespie());
 }
 
 public void plotNewWindow(GPointsArray data) {
