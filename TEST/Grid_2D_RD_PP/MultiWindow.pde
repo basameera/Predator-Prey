@@ -68,7 +68,7 @@ class PWindow extends PApplet {
     // GPlot plot = new GPlot(this, 25, 25);
     
     // Set the plot title and the axis labels
-    plot.setTitleText("1 cell grid");
+    plot.setTitleText("multicell grid");
     plot.getXAxis().setAxisLabelText("x axis");
     plot.getYAxis().setAxisLabelText("y axis");
     
@@ -110,7 +110,7 @@ class PWindow extends PApplet {
     // GPlot plot = new GPlot(this, 25, 25);
     
     // Set the plot title and the axis labels
-    plot.setTitleText("1 cell grid");
+    plot.setTitleText("multicell grid");
     plot.getXAxis().setAxisLabelText("x axis");
     plot.getYAxis().setAxisLabelText("y axis");
     

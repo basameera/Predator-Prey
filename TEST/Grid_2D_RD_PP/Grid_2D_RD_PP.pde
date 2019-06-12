@@ -7,7 +7,7 @@ import processing.dxf.*;
 // https://www.youtube.com/watch?v=BV9ny785UNc
 // Size of cells
 int cellSize = 3;
-int cols = 100;
+int cols = 60;
 int rows = cols;
 int wh = 700;
 // Colors
@@ -39,7 +39,7 @@ void setup() {
   }
   
   //random initialization of 10 spots
-  for (int n = 0; n < 30; n++) {
+  for (int n = 0; n < 10; n++) {
     int margin = 20;
     if(cols-margin>0 && rows-margin>0){
       int startx = int(random(margin, cols-margin));
