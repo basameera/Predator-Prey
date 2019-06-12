@@ -72,16 +72,19 @@ void readSimSettings(){
   T_end = float(cp5.get(Textfield.class, "Simulation_Time").getText());
   a_init = float(cp5.get(Textfield.class, "init_prey").getText());
   b_init = float(cp5.get(Textfield.class, "init_predator").getText());
-  
-  println("sim time:", T_end);
+  nPoints = int((T_end+dt)/dt);
+  println("\nsim time:", T_end);
   println("Prey:", a_init);
   println("Predator:", b_init);
+  println("Sim Steps:", nPoints);
+  println();
 }
 
 public void reset() {
   println("simSettings - reset");
   readSimSettings();
   simTime = 0;
+  simSteps = 0;
   initDraw();
 }
 

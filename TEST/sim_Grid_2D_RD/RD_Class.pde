@@ -33,8 +33,8 @@ Cell[][] prev;
 // Buffer to record the state of the cells and use this while changing the others in the interations
 Cell[][] grid;
 
-float[][][] simData_A;
-float[][][] simData_B;
+float[][][] simData_A = new float[nPoints][0][0];
+float[][][] simData_B = new float[nPoints][0][0];
 
 class tuple
 {
@@ -97,7 +97,6 @@ void update() {
       
       simData_A[simSteps][i][j] = newspot.a;
       simData_B[simSteps][i][j] = newspot.b;
-      println(newspot.a, newspot.b);
       
     }
   }
