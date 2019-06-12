@@ -8,7 +8,7 @@ import java.util.Map;
 
 ControlP5 cp5;
 // Size of cells
-int cellSize = 20;
+int cellSize = 10;
 int cols = 0;
 int rows = 0;
 
