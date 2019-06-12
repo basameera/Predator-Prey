@@ -3,22 +3,25 @@
 */
 
 //parameters
-float dA = 1.0;
-float dB = 1.0;
-float dt = 0.01;
-//"coral growth" simulation (f=.0545, k=.062).
-float feed = 0.055;
-float k = 0.062;
+float dA = 4;
+float dB = 4;
 
 float ap = 1.0;
 float bp = 0.1;
 float cp = 1.5;
 float dp = 0.075;
-float T_start = 0.0, T_end = 20.0;
+float dt = 0.01;
+float T_start = 0.0, T_end = 200.0;
 
 // Starting values
 float a_init = 10.0, b_init = 10.0;
 
+int nPoints = int((T_end+dt)/dt);
+
+GPointsArray Ut = new GPointsArray(nPoints);
+GPointsArray Vt = new GPointsArray(nPoints);
+
+int timestamp = 1;
 // Array of cells
 Cell[][] prev;
 
