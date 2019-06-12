@@ -81,7 +81,7 @@ void readSimSettings(){
 }
 
 public void reset() {
-  println("simSettings - reset ");
+  println("simSettings - reset");
   readSimSettings();
   simTime = 0;
   simSteps = 0;
