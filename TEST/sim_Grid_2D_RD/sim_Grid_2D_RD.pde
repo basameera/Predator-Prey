@@ -8,7 +8,7 @@ import java.util.Map;
 
 ControlP5 cp5;
 // Size of cells
-int cellSize = 10;
+int cellSize = 20;
 int cols = 0;
 int rows = 0;
 
@@ -32,7 +32,7 @@ public void settings() {
 
 void setup() {
   mainLeftMargin = (displayWidth-width-midGap-plotWindowW)/2;
-  surface.setLocation(mainLeftMargin, (displayHeight-height)/2);
+  surface.setLocation(0, (displayHeight-height)/2);
   settings_width = width - height;
   HEIGHT = height;
   WIDTH = height;
@@ -54,7 +54,7 @@ void initDraw(){
   // Instantiate arrays 
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
-      float a = 1;
+      float a = a_init; //init with all preys
       float b = 0;
       // Initialize each object
       prev[i][j] = new Cell(a, b, i*cellSize, j*cellSize, cellSize, cellSize);
@@ -62,17 +62,17 @@ void initDraw(){
     }
   }
   
-  //random initialization of 10 spots
-  for (int n = 0; n < 2; n++) {
-    int margin = 20;
+  //random init of predators
+  for (int n = 0; n < 1; n++) {
+    int margin = 5;
     if(cols-margin>0 && rows-margin>0){
       int startx = int(random(margin, cols-margin));
       int starty = int(random(margin, rows-margin));
   
-      for (int i = startx; i < startx+10; i++) {
-        for (int j = starty; j < starty+10; j ++) {
-          float a = 1;
-          float b = 1;
+      for (int i = startx; i < startx+5; i++) {
+        for (int j = starty; j < starty+5; j ++) {
+          float a = 0;
+          float b = b_init;
           grid[i][j] = new Cell(a, b, i*cellSize, j*cellSize, cellSize, cellSize);
           prev[i][j] = new Cell(a, b, i*cellSize, j*cellSize, cellSize, cellSize);
         }
@@ -92,11 +92,17 @@ void initDraw(){
 }
 
 void draw() {
+  
   if (!pause) {
-    for (int i = 0; i < 10; i++) {
+    //println(frameRate);
+    for (int i = 0; i < 1; i++) {
       update();
       swap();
       simTime += dt;
+      simSteps++;
+    }
+    if(simTime%10==0.0){
+      println("Progress:", int(simTime), "/", int(T_end)); 
     }
     
     if(simTime>=T_end){

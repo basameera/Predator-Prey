@@ -1,6 +1,7 @@
 
 class PWindow extends PApplet {
   int leftMargin = 0;
+  String plotName = "";
   GPointsArray abc;
   HashMap<String, GPointsArray> def;
   boolean hashData = false;
@@ -9,19 +10,21 @@ class PWindow extends PApplet {
     size(plotWindowW, plotWindowW*3/4);
   }
   
-  PWindow(int leftMarg, GPointsArray pData) {
+  PWindow(int leftMarg, GPointsArray pData, String plotName_) {
     super();
     PApplet.runSketch(new String[] {this.getClass().getSimpleName()}, this);
     leftMargin = leftMarg;
     abc = pData;
+    plotName = plotName_;
   }
   
-  PWindow(int leftMarg, HashMap<String, GPointsArray> pData) {
+  PWindow(int leftMarg, HashMap<String, GPointsArray> pData, String plotName_) {
     super();
     PApplet.runSketch(new String[] {this.getClass().getSimpleName()}, this);
     leftMargin = leftMarg;
     def = pData;
     hashData = true;
+    plotName = plotName_;
   }
 
   void setup() {
@@ -98,7 +101,7 @@ class PWindow extends PApplet {
     plot.setDim(width-100, height-100);
     
     // Set the plot title and the axis labels
-    plot.setTitleText("A very simple example");
+    plot.setTitleText("Reaction-Difussion with Gillespie at "+plotName);
     plot.getXAxis().setAxisLabelText("x axis");
     plot.getYAxis().setAxisLabelText("y axis");
     

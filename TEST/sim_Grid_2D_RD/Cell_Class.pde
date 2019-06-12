@@ -21,8 +21,8 @@ class Cell {
   void update(){
     //this.cellColor = color(0, int( ((this.a) - (this.b))*255 ), 0);
     //this.cellColor = color(int(this.a*255), int(this.b*255), 0);
-    this.cellColor = color((a-b)*255);
-    
+    //this.cellColor = color((a-b)*255);
+    this.cellColor = color((b/(a+b))*255,  (a/(a+b))*255, 0);
   }
 
   void display() {
