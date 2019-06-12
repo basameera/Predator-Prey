@@ -1,3 +1,10 @@
+Textfield lblStatus;
+Textfield tf_prey;
+Textfield tf_predator;
+Textfield tf_simTime;
+Textfield tf_cell_x;
+Textfield tf_cell_y;
+
 void simSettingsSetup(){
   int fontSize = 15;
   int pos_gap = fontSize*4;
@@ -5,42 +12,54 @@ void simSettingsSetup(){
   int btn_width = 60;
   PFont font = createFont("arial",fontSize);
   cp5 = new ControlP5(this);
-        
-  cp5.addTextfield("init_prey")
+  
+  //header
+  tf_prey = cp5.addTextfield("init_prey")
      .setPosition(height+20, 20)
      .setSize(tf_width, fontSize*2)
      .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
      
-  cp5.addTextfield("init_predator")
+  tf_predator = cp5.addTextfield("init_predator")
      .setPosition(height+20 + tf_width + 20, 20)
      .setSize(tf_width, fontSize*2)
      .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
 
-   cp5.addTextfield("Simulation_Time")
+   tf_simTime = cp5.addTextfield("Simulation_Time")
      .setPosition(height+20, 20+pos_gap)
      .setSize(tf_width, fontSize*2)
      .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
      
-   cp5.addTextfield("CELL_Y")
+   tf_cell_y = cp5.addTextfield("CELL_Y")
      .setPosition(height+20, 20+(pos_gap*2))
      .setSize(tf_width, fontSize*2)
      .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
      
-   cp5.addTextfield("CELL_X")
+   tf_cell_x = cp5.addTextfield("CELL_X")
      .setPosition(height+20 + tf_width + 20, 20+(pos_gap*2))
      .setSize(tf_width, fontSize*2)
      .setFont(createFont("arial",fontSize))
      .setAutoClear(false)
      ;
-       
+
+  lblStatus = cp5.addTextfield("status")
+     .setPosition(height+20, 20+(pos_gap*4))
+     .setSize(tf_width*2, fontSize*2)
+     .setFont(createFont("arial", 20))
+     .setAutoClear(true)
+     .setFocus(false)
+     ;
+  
+  lblStatus.setText("Ready");
+  
+  //footer
   cp5.addBang("reset")
      .setPosition(height+20, 640)
      .setSize(btn_width, fontSize*2)
@@ -63,15 +82,15 @@ void simSettingsSetup(){
      ; 
      
   textFont(font);
-  cp5.get(Textfield.class, "init_prey").setText(str(int(a_init)));
-  cp5.get(Textfield.class, "init_predator").setText(str(int(b_init)));
-  cp5.get(Textfield.class, "Simulation_Time").setText(str(int(T_end))); 
+  tf_prey.setText(str(int(a_init)));
+  tf_predator.setText(str(int(b_init)));
+  tf_simTime.setText(str(int(T_end))); 
 }
 
 void readSimSettings(){
-  T_end = float(cp5.get(Textfield.class, "Simulation_Time").getText());
-  a_init = float(cp5.get(Textfield.class, "init_prey").getText());
-  b_init = float(cp5.get(Textfield.class, "init_predator").getText());
+  T_end = float(tf_simTime.getText());
+  a_init = float(tf_prey.getText());
+  b_init = float(tf_predator.getText());
   nPoints = int((T_end+dt)/dt);
   println("\nsim time:", T_end);
   println("Prey:", a_init);
@@ -82,6 +101,8 @@ void readSimSettings(){
 
 public void reset() {
   println("simSettings - reset");
+  lblStatus.setText("Ready");
+  lblStatus.setColorValue(0xff00ff00);
   readSimSettings();
   simTime = 0;
   simSteps = 0;
@@ -95,9 +116,13 @@ public void run() {
   simData_B = new float[nPoints][cols][rows];
   if(pause){
     println("simSettings - pause");
+    lblStatus.setText("Paused");
+    lblStatus.setColorValue(0xff00ff00);
   }
   else{
     println("simSettings - run");
+    lblStatus.setText("Running");
+    lblStatus.setColorValue(0xffff0000);
   }
 }
 
@@ -114,8 +139,8 @@ GPointsArray genPlotData(){
 
 public void plot() {
   println("simSettings - plot");
-  int pcx = int(cp5.get(Textfield.class, "CELL_X").getText());
-  int pcy = int(cp5.get(Textfield.class, "CELL_Y").getText());
+  int pcx = int(tf_cell_x.getText());
+  int pcy = int(tf_cell_y.getText());
   println(pcy, pcx);
   
   plotNewWindow(getSimData(pcy, pcx), String.format("Cell (%d, %d)", pcy, pcx));

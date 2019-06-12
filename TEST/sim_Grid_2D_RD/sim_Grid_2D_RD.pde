@@ -109,6 +109,8 @@ void draw() {
       pause = true;
       //noLoop();
       println("Sim Done");
+      lblStatus.setText("Simulation Done");
+      lblStatus.setColorValue(0xff00ff00);
     }
     
     for (int i = 0; i < cols; i++) {
@@ -125,8 +127,8 @@ void mousePressed() {
     int cx = mouseX/cellSize;
     int cy = mouseY/cellSize;
     println("mouse press cell selection:", cy, cx);
-    cp5.get(Textfield.class, "CELL_Y").setText(str(cy));
-    cp5.get(Textfield.class, "CELL_X").setText(str(cx));
+    tf_cell_y.setText(str(cy));
+    tf_cell_x.setText(str(cx));
 
   }
 }
