@@ -67,7 +67,7 @@ class PWindow extends PApplet {
     // Set the plot title and the axis labels
     plot.setTitleText("A very simple example");
     plot.getXAxis().setAxisLabelText("Simulation Time Steps (per 0.25 sec)");
-    plot.getYAxis().setAxisLabelText("Number of Animals");
+    plot.getYAxis().setAxisLabelText("Animal Population");
     
     // Add the points
     plot.setPoints(points);
@@ -102,15 +102,15 @@ class PWindow extends PApplet {
     
     // Set the plot title and the axis labels
     plot.setTitleText("Reaction-Difussion with Gillespie at "+plotName);
-    plot.getXAxis().setAxisLabelText("x axis");
-    plot.getYAxis().setAxisLabelText("y axis");
+    plot.getXAxis().setAxisLabelText("Simulation Time Steps (per 0.25 sec)");
+    plot.getYAxis().setAxisLabelText("Animal Population");
     
     // Add the points
     plot.setPoints(hashPoints.get("Ut"));
-    plot.setLineColor(color(255, 0, 0));
+    plot.setLineColor(color(0, 0, 255));
     
     plot.addLayer("Fox", hashPoints.get("Vt"));
-    plot.getLayer("Fox").setLineColor(color(0, 0, 255));
+    plot.getLayer("Fox").setLineColor(color(255, 0, 0));
     
     plot.beginDraw();
     plot.drawBox();

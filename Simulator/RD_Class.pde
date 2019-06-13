@@ -19,9 +19,9 @@ float ap = 1.0;
 float bp = 0.005;
 float cp = 0.6;
 float dp = 0.005;
-float T_start = 0.0, T_end = 50.0;
+float T_start = 0.0, T_end = 150.0;
 float dt = 0.25;
-float a_init = 50.0, b_init = 100.0;
+float a_init = 25.0, b_init = 50.0;
 float simTime = 0;
 int simSteps = 0;
 
@@ -92,8 +92,8 @@ void update() {
       newspot.a = nv.fst + dA*laplaceA(i,j)*dt;
       newspot.b = nv.snd + dB*laplaceB(i,j)*dt;
 
-      newspot.a = constrain(newspot.a, 0, 2000);
-      newspot.b = constrain(newspot.b, 0, 2000);
+      newspot.a = constrain(newspot.a, 0, 3000);
+      newspot.b = constrain(newspot.b, 0, 3000);
       
       simData_A[simSteps][i][j] = newspot.a;
       simData_B[simSteps][i][j] = newspot.b;
@@ -171,7 +171,7 @@ void saveToFile(float[] A, float[]B){
   }
   simData.setJSONArray("A", arrayA);
   simData.setJSONArray("B", arrayB);
-  saveJSONObject(simData, "data/data_0.json"); 
+  saveJSONObject(simData, "data/data_10.json"); 
 }
 
 HashMap<String, GPointsArray> getSimData(int pcy, int pcx){
@@ -197,19 +197,3 @@ HashMap<String, GPointsArray> getSimData(int pcy, int pcx){
 
   return hm;
 }
-
-//void update() {
-//  for (int i = 1; i < cols-1; i++) {
-//    for (int j = 1; j < rows-1; j ++) {
-//      float a = prev[i][j].a;
-//      float b = prev[i][j].b;
-
-//      Cell newspot = grid[i][j]; //new values of the pixel
-//      newspot.a = a + (dA*laplaceA(i,j) - a*b*b + feed*(1-a))*dt;
-//      newspot.b = b + (dB*laplaceB(i,j) + a*b*b - (k+feed)*b)*dt;
-
-//      newspot.a = constrain(newspot.a, 0, 1);
-//      newspot.b = constrain(newspot.b, 0, 1);
-//    }
-//  }
-//}

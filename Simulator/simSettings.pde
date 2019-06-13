@@ -53,6 +53,10 @@ void simSettingsSetup(){
      .setAutoClear(false)
      ;
 
+  tf_cell_y.setText("63");
+  tf_cell_x.setText("35");
+  
+
   lblStatus = cp5.addTextfield("status")
      .setPosition(height+20, 20+(pos_gap*4))
      .setSize(tf_width*2, fontSize*2)
