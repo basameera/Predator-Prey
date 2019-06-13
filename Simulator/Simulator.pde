@@ -66,10 +66,10 @@ void initDraw(){
   for (int n = 0; n < 1; n++) {
     int margin = 5;
     if(cols-margin>0 && rows-margin>0){
-      //int startx = int(random(margin, cols-margin));
-      //int starty = int(random(margin, rows-margin));
-      int startx = 32;
-      int starty = 60;
+      int startx = int(random(margin, cols-margin));
+      int starty = int(random(margin, rows-margin));
+      //int startx = 32;
+      //int starty = 60;
       for (int i = startx; i < startx+5; i++) {
         for (int j = starty; j < starty+5; j ++) {
           float a = 0;

@@ -21,7 +21,7 @@ float cp = 0.6;
 float dp = 0.005;
 float T_start = 0.0, T_end = 150.0;
 float dt = 0.25;
-float a_init = 25.0, b_init = 50.0;
+float a_init = 75.0, b_init = 50.0;
 float simTime = 0;
 int simSteps = 0;
 
